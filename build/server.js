@@ -4,13 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var express_1 = __importDefault(require("express"));
-var body_parser_1 = __importDefault(require("body-parser"));
+// import bodyParser from 'body-parser';
+var productRoutes_1 = __importDefault(require("./routes/productRoutes"));
 var app = (0, express_1["default"])();
-var address = "0.0.0.0:3000";
-app.use(body_parser_1["default"].json());
-app.get('/', function (req, res) {
+app.use('/products', productRoutes_1["default"]);
+app.get('/', function (_req, res) {
     res.send('Hello World!');
 });
 app.listen(3000, function () {
-    console.log("starting app on: ".concat(address));
+    console.log("Listen for requests on localhost port 3000");
 });

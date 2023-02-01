@@ -1,16 +1,16 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import productRoutes from "./routes/productRoutes";
 
-import bodyParser from 'body-parser';
+const app = express();
 
-const app: express.Application = express()
-const address: string = "0.0.0.0:3000"
 
-app.use(bodyParser.json())
 
-app.get('/', function (req: Request, res: Response) {
+app.use('/products', productRoutes);
+
+app.get('/', (_req: express.Request, res: express.Response): void => {
     res.send('Hello World!')
 })
 
-app.listen(3000, function () {
-    console.log(`starting app on: ${address}`)
+app.listen(3000, () => {
+    console.log(`Listen for requests on localhost port 3000`);
 })
