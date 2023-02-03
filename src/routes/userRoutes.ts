@@ -10,12 +10,12 @@ const store = new UserStore();
 const jsonParser = bodyParser.json();
 routes.get('/', verifyToken, (_req, res) => {
     store.index().then((data) => {
-        res.send(data);
+        res.status(200).send(data);
     });
 });
 routes.get('/:id', verifyToken, (req, res) => {
     store.show(parseInt(req.params.id)).then((data) => {
-        res.send(data);
+        res.status(200).send(data);
     });
 });
 routes.post('/create', jsonParser, (req, res) => {

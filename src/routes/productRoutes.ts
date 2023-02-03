@@ -9,7 +9,7 @@ const store = new PhoneStore();
 
 router.get('/', (_req, res) => {
     store.index().then((data) => {
-        res.send(data);
+        res.status(200).send(data);
     });
 });
 
@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
 
     const id: number = parseInt(req.params.id)
     store.show(id).then((data) => {
-        res.send(data);
+        res.status(200).send(data);
     })
 });
 
@@ -26,7 +26,7 @@ router.post('/create', verifyToken, (req, res) => {
     const product = req.body;
     store.create(product).then((data) => {
         console.log(data);
-        res.json(data);
+        res.status(200).json(data);
     })
 });
 

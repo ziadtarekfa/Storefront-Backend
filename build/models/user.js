@@ -15,14 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserStore = void 0;
 const database_1 = __importDefault(require("../database"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 class UserStore {
-    index(token) {
+    index() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const connection = yield database_1.default.connect();
                 const sql = "SELECT * FROM users";
                 const result = yield connection.query(sql);
-                console.log(result);
                 return result.rows;
             }
             catch (err) {
@@ -30,12 +32,13 @@ class UserStore {
             }
         });
     }
-    show(token, id) {
+    show(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const connection = yield database_1.default.connect();
-                const sql = `SELECT * FROM users WHERE id=${id}`;
-                const result = yield connection.query(sql);
+                const sql = `SELECT * FROM users WHERE id=$1`;
+                const values = [id];
+                const result = yield connection.query(sql, values);
                 return result.rows;
             }
             catch (err) {
@@ -43,19 +46,22 @@ class UserStore {
             }
         });
     }
-    create(token, user) {
+    create(user) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const connection = yield database_1.default.connect();
                 const salt = yield bcrypt_1.default.genSalt(10);
                 const hash = yield bcrypt_1.default.hash(user.password, salt);
-                const sql = `INSERT INTO users (firstName,lastName,password) VALUES 
-            (${user.firstName},${user.lastName},${hash})`;
-                const result = yield connection.query(sql);
-                return result.rows;
+                const TOKEN_SECRET = process.env.TOKEN_SECRET;
+                const sql = `INSERT INTO users (firstName,lastName,password) VALUES ($1,$2,$3) RETURNING *;`;
+                const values = [user.firstName, user.lastName, hash];
+                const result = yield connection.query(sql, values);
+                //create token 
+                const accessToken = jsonwebtoken_1.default.sign({ "firstName": user.firstName, "lastName": user.lastName }, TOKEN_SECRET);
+                return { "token": accessToken, "user": result.rows[0] };
             }
             catch (err) {
-                throw new Error(`${err}`);
+                throw new Error(`Unable to create user ${err}`);
             }
         });
     }

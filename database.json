@@ -28,9 +28,6 @@
         "port": {
             "ENV": "POSTGRES_PORT"
         },
-        "database": {
-            "ENV": "POSTGRES_DB_TEST"
-        },
         "user": {
             "ENV": "POSTGRES_USER"
         },

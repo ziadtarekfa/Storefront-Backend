@@ -9,7 +9,7 @@ const store = new OrderStore();
 router.post('/create', verifyToken, (req, res) => {
     const order = req.body;
     store.createOrder(order).then((data) => {
-        res.send(data);
+        res.status(200).send(data);
     })
 });
 
@@ -17,7 +17,7 @@ router.get('/current/user_id/:id', verifyToken, (req, res) => {
     const { id } = req.params;
     const userId = parseInt(id);
     store.getCurrentOrdersByUser(userId).then((data) => {
-        res.send(data);
+        res.status(200).send(data);
     })
 });
 

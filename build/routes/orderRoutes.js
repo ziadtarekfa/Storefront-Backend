@@ -4,26 +4,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const phone_1 = require("../models/phone");
+const order_1 = require("../models/order");
 const verifyToken_1 = __importDefault(require("../models/verifyToken"));
 const router = express_1.default.Router();
-const store = new phone_1.PhoneStore();
-router.get('/', (_req, res) => {
-    store.index().then((data) => {
-        res.status(200).send(data);
-    });
-});
-router.get('/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    store.show(id).then((data) => {
-        res.status(200).send(data);
-    });
-});
+const store = new order_1.OrderStore();
 router.post('/create', verifyToken_1.default, (req, res) => {
-    const product = req.body;
-    store.create(product).then((data) => {
-        console.log(data);
-        res.status(200).json(data);
+    const order = req.body;
+    store.createOrder(order).then((data) => {
+        res.status(200).send(data);
+    });
+});
+router.get('/current/user_id/:id', verifyToken_1.default, (req, res) => {
+    const { id } = req.params;
+    const userId = parseInt(id);
+    store.getCurrentOrdersByUser(userId).then((data) => {
+        res.status(200).send(data);
     });
 });
 exports.default = router;
