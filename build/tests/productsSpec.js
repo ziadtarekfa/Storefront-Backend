@@ -14,7 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../server"));
+const productModel_1 = require("../models/productModel");
 const request = (0, supertest_1.default)(server_1.default);
+const store = new productModel_1.ProductStore();
+describe("Test Product Model Functions", () => {
+    it("list all products", () => {
+        expect(store.index).toBeDefined();
+    });
+    it("list a specific product", () => {
+        expect(store.show).toBeDefined();
+    });
+    it("create a product", () => {
+        expect(store.create).toBeDefined();
+    });
+});
 describe("Test Product Endpoints", () => {
     it("gets all products", () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get('/products');
@@ -29,17 +42,3 @@ describe("Test Product Endpoints", () => {
         expect(response.status).toBe(200);
     }));
 });
-// describe("Test Product Exceptions", () => {
-//     it("checks if no products are in the database", async () => {
-//         const response = await request.get('/products');
-//         expect(response.status).toBe(200);
-//     });
-//     it("checks if id is not found", async () => {
-//         const response = await request.get('/products');
-//         expect(response.status).toBe(200);
-//     });
-//     it("checks if no products are in the database", async () => {
-//         const response = await request.get('/products');
-//         expect(response.status).toBe(200);
-//     });
-// })

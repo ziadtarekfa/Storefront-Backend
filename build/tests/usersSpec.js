@@ -14,7 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../server"));
+const userModel_1 = require("../models/userModel");
 const request = (0, supertest_1.default)(server_1.default);
+const store = new userModel_1.UserStore();
+describe("Test User Model Functions", () => {
+    it("list all users", () => {
+        expect(store.index).toBeDefined();
+    });
+    it("list a specific user", () => {
+        expect(store.show).toBeDefined();
+    });
+    it("create a user", () => {
+        expect(store.create).toBeDefined();
+    });
+});
 describe("Test Users Endpoints", () => {
     it("gets all users", () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get('/users');

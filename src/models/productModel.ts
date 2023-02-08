@@ -1,12 +1,8 @@
 import client from "../database";
-export type Phone = {
-    id: number;
-    name: string;
-    price: number;
-}
+import Product from "../types/Product";
 
-export class PhoneStore {
-    async index(): Promise<Phone[]> {
+export class ProductStore {
+    async index(): Promise<Product[]> {
         try {
             const connection = await client.connect();
             const sql = 'SELECT * FROM products';
@@ -17,7 +13,7 @@ export class PhoneStore {
             throw new Error(`${err}`);
         }
     }
-    async show(id: number): Promise<Phone[]> {
+    async show(id: number): Promise<Product[]> {
         try {
             const connection = await client.connect();
             const sql = `SELECT * FROM products WHERE id = $1`;
@@ -30,7 +26,7 @@ export class PhoneStore {
         }
     }
 
-    async create(product: Phone): Promise<Phone[]> {
+    async create(product: Product): Promise<Product[]> {
         try {
             const connection = await client.connect();
             const sql = "INSERT INTO products (name, price) VALUES($1, $2) RETURNING *";

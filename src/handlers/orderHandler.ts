@@ -1,6 +1,6 @@
 import express from "express";
-import { OrderStore } from "../models/order";
-import verifyToken from "../models/verifyToken";
+import { OrderStore } from "../models/orderModel";
+import verifyToken from "../middleware/verifyToken";
 
 
 const router = express.Router();
@@ -10,7 +10,7 @@ router.post('/create', verifyToken, (req, res) => {
     const order = req.body;
     store.createOrder(order).then((data) => {
         res.status(200).send(data);
-    })
+    });
 });
 
 router.get('/current/user_id/:id', verifyToken, (req, res) => {

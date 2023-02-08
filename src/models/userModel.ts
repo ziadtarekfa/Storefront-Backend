@@ -2,13 +2,9 @@ import client from "../database";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import User from "../types/User";
 
-export type User = ({
-    id: number,
-    firstName: string,
-    lastName: string,
-    password: string
-});
+
 
 dotenv.config();
 

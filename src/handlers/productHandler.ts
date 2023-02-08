@@ -1,11 +1,11 @@
 import express from "express";
-import { PhoneStore } from "../models/phone";
-import verifyToken from "../models/verifyToken";
+import { ProductStore } from "../models/productModel";
+import verifyToken from "../middleware/verifyToken";
 
 const router = express.Router();
 
 
-const store = new PhoneStore();
+const store = new ProductStore();
 
 router.get('/', (_req, res) => {
     store.index().then((data) => {

@@ -1,18 +1,38 @@
 import supertest from "supertest";
+import { OrderStore } from "../models/orderModel";
 import app from "../server";
+import Order from "../types/Order";
 
 const request = supertest(app);
 
+const store = new OrderStore();
+const order = {
+    userId: 5,
+    status: "active"
+};
+const userId: number = 5;
+
+describe("Test Order Model Functions", () => {
+
+    it("creates an order", () => {
+        expect(store.createOrder).toBeDefined();
+    });
+
+    it("gets current orders by a specific user", () => {
+        expect(store.getCurrentOrdersByUser).toBeDefined();
+    });
+
+});
 
 describe("Test Orders Endpoints", () => {
 
-    it("creates an order", async () => {
-        const response = await request.post('/orders/create');
+    it("create an order endpoint", async () => {
+        const response = await request.post(`/orders/create`);
         expect(response.status).toBe(200);
     });
 
-    it("gets current orders for a single user", async () => {
-        const response = await request.get('/orders/current/user_id/8');
+    it("gets current orders for a single user endpoint", async () => {
+        const response = await request.get(`/orders/current/user_id/${userId}`);
         expect(response.status).toBe(200);
     });
 

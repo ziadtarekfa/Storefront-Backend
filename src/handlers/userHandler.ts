@@ -1,7 +1,7 @@
 import bodyParser from "body-parser";
 import express from "express";
-import { UserStore } from "../models/user";
-import verifyToken from "../models/verifyToken";
+import { UserStore } from "../models/userModel";
+import verifyToken from "../middleware/verifyToken";
 
 const routes = express.Router();
 

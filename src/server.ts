@@ -1,24 +1,29 @@
-import productRoutes from "./routes/productRoutes";
-import userRoutes from "./routes/userRoutes";
-import orderRoutes from './routes/orderRoutes';
+import productHanlder from "./handlers/productHandler";
+import userHandler from "./handlers/userHandler";
+import orderHanlder from './handlers/orderHandler';
+import orderProductsHandler from './handlers/orderProductsHandler';
 import express from "express";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 const app = express();
 
+
 app.use(bodyParser.json());
 
-app.use('/orders', orderRoutes);
-app.use('/products', productRoutes);
-app.use('/users', userRoutes);
+app.use('/orders', orderHanlder);
+app.use('/products', productHanlder);
+app.use('/users', userHandler);
+app.use('/ordered-products', orderProductsHandler);
 
 
 app.get('/', (_req: express.Request, res: express.Response): void => {
     res.send('Hello World!')
 })
 
-app.listen(3000, (): void => {
+app.listen(process.env.SERVER_PORT, (): void => {
     console.log(`Listen for requests on localhost port 3000`);
 })
 

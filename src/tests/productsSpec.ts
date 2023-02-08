@@ -1,8 +1,24 @@
 import supertest from "supertest";
 import app from "../server";
-
+import { ProductStore } from "../models/productModel";
 const request = supertest(app);
 
+const store = new ProductStore();
+
+describe("Test Product Model Functions", () => {
+
+    it("list all products", () => {
+        expect(store.index).toBeDefined();
+    });
+
+    it("list a specific product", () => {
+        expect(store.show).toBeDefined();
+    });
+    it("create a product", () => {
+        expect(store.create).toBeDefined();
+    });
+
+});
 
 describe("Test Product Endpoints", () => {
 
