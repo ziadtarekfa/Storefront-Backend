@@ -65,7 +65,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJhaG1lZCIsImxhc3ROYW1lIjo
   * Request Body Parameters   
 
   ```
-  {"userId":5, "status":"active"}
+  {"userId":1, "status":"active"}
   ```
   * http://localhost:3000/orders/create
 
@@ -83,7 +83,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJhaG1lZCIsImxhc3ROYW1lIjo
   * Request Body Parameters 
 
   ```
-  {  "orderId":3, "productId":10,"quantity":20}
+  {  "orderId":2, "productId":1,"quantity":20}
   ```
   * http://localhost:3000/ordered-products/create
 
