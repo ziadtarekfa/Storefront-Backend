@@ -97,7 +97,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJhaG1lZCIsImxhc3ROYW1lIjo
 | id | SERIAL | PRIMARY KEY |
 | firstname | VARCHAR(50) 
 | lastname | VARCHAR(50) 
-| password | VARCHAR()
+| password | VARCHAR(100)
 #### Products Table
 | Data | Data Types | Constraints  |
 | ------------------ | ------------------ |  ------------------ |
