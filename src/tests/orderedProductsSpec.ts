@@ -1,15 +1,20 @@
-import supertest from "supertest";
 import { OrderedProductStore } from "../models//orderProductsModel";
-import app from "../server";
+import OrderedProduct from "../types/OrderedProduct";
 
-const request = supertest(app);
 
 const store = new OrderedProductStore();
 
+const orderedProduct: OrderedProduct = {
+    orderId: 1,
+    productId: 1,
+    quantity: 20
+};
 
 describe("Test Ordered Product Model Functions", () => {
     it("creates an order", () => {
-        expect(store.createOrderedProduct).toBeDefined();
+        store.createOrderedProduct(orderedProduct).then((data) => {
+            expect(data).toBeDefined();
+        })
     });
 
 });

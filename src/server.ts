@@ -24,7 +24,7 @@ app.get('/', (_req: express.Request, res: express.Response): void => {
 })
 
 app.listen(process.env.SERVER_PORT, (): void => {
-    console.log(`Listen for requests on localhost port 3000`);
+    console.log(`Listen for requests on localhost port 5050`);
 })
 
 export default app;

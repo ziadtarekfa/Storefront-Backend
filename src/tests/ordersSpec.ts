@@ -10,19 +10,24 @@ const order = {
     userId: 5,
     status: "active"
 };
-const userId: number = 5;
+const userId: number = 1;
 
 describe("Test Order Model Functions", () => {
 
     it("creates an order", () => {
-        expect(store.createOrder).toBeDefined();
+        store.createOrder(order).then((data) => {
+            expect(data.length).toBeGreaterThan(0);
+        })
     });
 
     it("gets current orders by a specific user", () => {
-        expect(store.getCurrentOrdersByUser).toBeDefined();
+        store.getCurrentOrdersByUser(userId).then((data) => {
+            expect(data.length).toBeGreaterThan(0);
+        });
     });
 
 });
+
 
 describe("Test Orders Endpoints", () => {
 
@@ -36,6 +41,4 @@ describe("Test Orders Endpoints", () => {
         expect(response.status).toBe(200);
     });
 
-
 });
-

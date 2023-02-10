@@ -29,7 +29,6 @@ router.post('/create', verifyToken, (req, res) => {
 
     const product = req.body;
     store.create(product).then((data) => {
-        console.log(data);
         res.status(200).json(data);
     }).catch((err) => {
         res.send(`Unable to create product due to ${err}`);
