@@ -16,15 +16,19 @@ const verifyToken = async (req: express.Request, res: express.Response, next: ex
 
     const providedToken = authorizationHeader?.split(' ')[1];
 
-    await jwt.verify(providedToken as string, process.env.TOKEN_SECRET as string, (err) => {
-        if (err) {
-            res.send("Invalid Token");
-        }
-        else {
-            next();
-        }
+    try {
+        await jwt.verify(providedToken as string, process.env.TOKEN_SECRET as string, (err) => {
+            if (err) {
+                res.send("Invalid Token");
+            }
+            else {
+                next();
+            }
 
-    });
+        });
+    } catch (err) {
+        res.send("Unable to verify token due to" + err);
+    }
 }
 
 
