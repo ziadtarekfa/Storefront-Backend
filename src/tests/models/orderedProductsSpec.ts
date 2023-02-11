@@ -1,5 +1,5 @@
-import { OrderedProductStore } from "../models//orderProductsModel";
-import OrderedProduct from "../types/OrderedProduct";
+import { OrderedProductStore } from "../../models/orderProductsModel";
+import OrderedProduct from "../../types/OrderedProduct";
 
 
 const store = new OrderedProductStore();
