@@ -44,7 +44,7 @@ CREATE DATABASE storefront_backend_test
 
 ```
 ## Ports
-  Listening on port 3000 localhost for server
+  Listening on port 5050 localhost for server
   Database is running on port 5432
 
   
