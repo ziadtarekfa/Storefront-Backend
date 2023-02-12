@@ -9,14 +9,14 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJhaG1lZCIsImxhc3ROYW1lIjo
   * Authorization required    - Bearer Token
   * Parameters    np    - none
   * Usage             - get all users
-  * http://localhost:3000/users
+  * http://localhost:5050/users
 
 - Show 
   * Method           -  GET
   * Authorization required    - Bearer Token
   * URL Parameters        - id
   * Usage             - get a single User
-  * http://localhost:3000/users/:id
+  * http://localhost:5050/users/:id
  
 
 - Create User
@@ -27,7 +27,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJhaG1lZCIsImxhc3ROYW1lIjo
        ```
        { "firstName": "john",  "lastName": "mark","password": "mark182"}
        ```
-  * http://localhost:3000/users/create
+  * http://localhost:5050/users/create
 
 #### Products
 
@@ -36,14 +36,14 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJhaG1lZCIsImxhc3ROYW1lIjo
   * Authorization required    -No
   * Parameters        - none
   * Usage             - get all products
-  * http://localhost:3000/products
+  * http://localhost:5050/products
 
 - Show 
   * Method           -  GET
   * Authorization required    - No
   * Parameters        - id
   * Usage             - get a single product
-  * http://localhost:3000/products/:id
+  * http://localhost:5050/products/:id
  
 
 - Create Product
@@ -54,7 +54,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJhaG1lZCIsImxhc3ROYW1lIjo
   ```
   {"name":"Samsung  A77", "price": 1201}
   ```
-  * http://localhost:3000/products/create
+  * http://localhost:5050/products/create
 
 
 #### Orders 
@@ -67,14 +67,14 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJhaG1lZCIsImxhc3ROYW1lIjo
   ```
   {"userId":1, "status":"active"}
   ```
-  * http://localhost:3000/orders/create
+  * http://localhost:5050/orders/create
 
 
 - Get current orders for a specific user
   * Method           -  GET
   * Authorization required    - Bearer Token
   * URL Parameters        -  id
-  * http://localhost:3000/orders/current/user_id/:id
+  * http://localhost:5050/orders/current/user_id/:id
 
   #### Order-Products
   - Create Ordered Product
@@ -85,7 +85,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJhaG1lZCIsImxhc3ROYW1lIjo
   ```
   {  "orderId":2, "productId":1,"quantity":20}
   ```
-  * http://localhost:3000/ordered-products/create
+  * http://localhost:5050/ordered-products/create
 
 
   
