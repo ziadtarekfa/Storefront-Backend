@@ -25,7 +25,6 @@ routes.get('/:id', verifyToken, (req, res) => {
 routes.post('/create', jsonParser, (req, res) => {
     const user = req.body;
     store.create(user).then((data) => {
-        console.log(data);
         res.status(200).json(data);
     }).catch((err) => {
         res.send(`Unable to create user due to ${err}`);

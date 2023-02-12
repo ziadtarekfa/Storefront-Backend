@@ -23,7 +23,7 @@ export class OrderStore {
             const values = [userId];
             const result = await connection.query(sql, values);
             connection.release();
-            return result.rows[0];
+            return result.rows;
         } catch (err) {
             throw new Error("Unable to get current orders due to" + err);
         }

@@ -15,7 +15,7 @@ export class UserStore {
             const connection = await client.connect();
             const sql = "SELECT * FROM users";
             const result = await connection.query(sql);
-
+            connection.release();
             return result.rows;
         } catch (err) {
             throw new Error(`${err}`);
@@ -28,6 +28,7 @@ export class UserStore {
             const sql = `SELECT * FROM users WHERE id=$1`;
             const values = [id];
             const result = await connection.query(sql, values);
+            connection.release();
 
             return result.rows;
         } catch (err) {
@@ -45,7 +46,7 @@ export class UserStore {
             const values = [user.firstName, user.lastName, hash];
 
             const result = await connection.query(sql, values);
-
+            connection.release();
             //create token 
             const accessToken = jwt.sign({ "firstName": user.firstName, "lastName": user.lastName }, TOKEN_SECRET as string);
 
