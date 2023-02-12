@@ -33,7 +33,7 @@ Kindly check <u>requirements.md</u> for further details
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./build --onSuccess \"node ./build/server.js\"",
     "tsc": "tsc",
     "build": "npx tsc",
-    "test": "set ENV=test db-migrate up --config ./database.json -e test && npm run build && jasmine && db-migrate reset --config ./database.json -e test",
+    "test": " npm run build && set ENV=test&& db-migrate -e test up  && npm run jasmine",
     "jasmine": "jasmine"
 ```
 
